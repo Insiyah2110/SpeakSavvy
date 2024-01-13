@@ -4,31 +4,31 @@ import random
 import difflib
 
 Common_Sentences = [
-    "Bonjour! Comment ça va", 
-    "Ça va bien, merci. Et toi" ,
+    "Bonjour Comment ça va", 
+    "Ça va bien merci Et toi" ,
     "Quel est ton nom",
     "Je m'appelle Claude." ,
     "Enchanté",
     "D'où viens-tu",
     "Parles-tu anglais",
-    "Oui, je parle un peu anglais",
+    "Oui je parle un peu anglais",
     "Je ne parle pas bien français",
-    "Pourriez-vous parler plus lentement, s'il vous plaît",
+    "Pourriez-vous parler plus lentement s'il vous plaît",
     "Où est la salle de bain",
     "Combien ça coûte",
     "Pouvez-vous m'aider",
-    "Je voudrais commander poulet, s'il vous plaît",
-    "L'addition, s'il vous plaît",
+    "Je voudrais commander poulet s'il vous plaît",
+    "L'addition s'il vous plaît",
     "Je suis perdu",
     "Pouvez-vous me recommander un bon restaurant",
-    "Excusez-moi, où est la gare",
+    "Excusez-moi où est la gare",
     "Quel temps fait-il aujourd'hui",
     "Je vais visiter le musée demain",
     "Avez-vous des spécialités locales",
     "J'aimerais réserver une table pour deux personnes" ,
-    "J'adore la cuisine française!" ,
+    "J'adore la cuisine française" ,
     "J'aimerais acheter un billet pour France" , 
-    "Pouvons-nous avoir le menu, s'il vous plaît?" 
+    "Pouvons-nous avoir le menu, s'il vous plaît" 
     ]
 
 # Initialize the recognizer
@@ -72,21 +72,23 @@ def prompt_and_repeat(sentence):
             print(f"Similarity: {similarity:.2f}")
 
             # Define a threshold for considering the repetition to be correct
-            threshold = 0.8  # For example, 80% similarity
+            #threshold = 0.95  # For example, 80% similarity
 
-            if similarity > threshold:
-                print("The spoken text is a close match to the sentence.")
+            if similarity > 0.95:
+                print("Great Job! Next Question")
                 done = True
+            elif similarity > 0.8:
+                print("You're Getting There! Keep Practicing.")
             else:
-                print("The spoken text does not match the sentence well enough.")
-                speak_text("Let's try again. Please repeat the sentence.")
+                print("Don't Lose Hope. You'll Get There!")
+                speak_text("Let's try again.")
 
 
         except sr.UnknownValueError:
             # If speech is unintelligible
-            print("I couldn't understand what you said. Please try again.")
+            print("I couldn't understand what you said.")
             # Repeat the instruction in English
-            speak_text("I couldn't understand what you said. Please try again.")
+            speak_text("I couldn't understand what you said.")
         except sr.RequestError:
             # If there's a problem with the speech recognition service
             print("Could not request results; check your internet connection.")
@@ -97,10 +99,10 @@ def prompt_and_repeat(sentence):
 # The French sentence you want the user to repeat
 count = 0
 L = ["voulez-vous coucher avec moi", "je suis une grenouille", "je n'aime pas les chats", "je m'appelle claude", "bonjour", "s'il te plaît"]
-size = len(L)
+size = len(Common_Sentences)
 while(count < 3):
     choice = random.randint(0, size-1)
-    sentence_to_repeat = L[choice].lower()
+    sentence_to_repeat = Common_Sentences[choice].lower()
     ans = False
     while (not(ans)):
         ans = prompt_and_repeat(sentence_to_repeat)
