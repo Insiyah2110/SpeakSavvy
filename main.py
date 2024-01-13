@@ -98,20 +98,17 @@ def prompt_and_repeat(sentence):
 count = 0
 L = ["voulez-vous coucher avec moi", "je suis une grenouille", "je n'aime pas les chats", "je m'appelle claude", "bonjour", "s'il te plaît"]
 size = len(L)
-while(count < 10):
+while(count < 3):
     choice = random.randint(0, size-1)
     sentence_to_repeat = L[choice].lower()
     ans = False
     while (not(ans)):
         ans = prompt_and_repeat(sentence_to_repeat)
-        print(ans)
-        #if(not(done)):
-        #    print("Please Try Again")
     count += 1
 
 
 
-prompt_and_repeat(sentence_to_repeat)
+#prompt_and_repeat(sentence_to_repeat)
 
 #please try again until you get it 
 #also loop for different scentences
