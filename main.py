@@ -44,6 +44,7 @@ def speak_text(command, language="en-us"):
     subprocess.run(["say", "-v", voice, command])
 
 def prompt_and_repeat(sentence):
+    done = False
     # Instruction in English with the voice Samantha
     instruction = "Please repeat the following sentence:"
     print(instruction)
@@ -78,7 +79,7 @@ def prompt_and_repeat(sentence):
                 done = True
             else:
                 print("The spoken text does not match the sentence well enough.")
-                speak_text("Let's try again. Please repeat the sentence.", "Samantha")
+                speak_text("Let's try again. Please repeat the sentence.")
 
 
         except sr.UnknownValueError:
@@ -90,6 +91,8 @@ def prompt_and_repeat(sentence):
             # If there's a problem with the speech recognition service
             print("Could not request results; check your internet connection.")
 
+    return done
+
 
 # The French sentence you want the user to repeat
 count = 0
@@ -98,9 +101,10 @@ size = len(L)
 while(count < 10):
     choice = random.randint(0, size-1)
     sentence_to_repeat = L[choice].lower()
-
-    while (not(done)):
-        prompt_and_repeat(sentence_to_repeat)
+    ans = False
+    while (not(ans)):
+        ans = prompt_and_repeat(sentence_to_repeat)
+        print(ans)
         #if(not(done)):
         #    print("Please Try Again")
     count += 1
