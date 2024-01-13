@@ -4,7 +4,43 @@ import random
 import difflib
 
 #CHANGE THESE
-Common_Sentences = ["por favor", "hola", "Cómo estás"]
+Common_Sentences = [
+"Hola cómo estás",
+"Estoy bien" ,
+"Cuál es tu nombre" ,
+"Mucho gusto",
+"De dónde eres",
+"Hablas inglés",
+"Sí hablo un poco de inglés",
+"No hablo español muy bien",
+"Puedes hablar más despacio por favor",
+"Dónde está el baño",
+"Cuánto cuesta esto",
+"Me puedes ayudar",
+"La cuenta por favor",
+"Estoy perdido",
+"Puedes recomendarme un buen restaurante",
+"Disculpe dónde está la estación de tren",
+"Qué tiempo hace hoy",
+"Mañana voy a visitar el museo",
+"Tienen especialidades locales",
+"Me gustaría reservar una mesa para dos personas",
+"Me encanta la comida española",
+"Puedo ver el menú, por favor",
+"Estoy aprendiendo español",
+"Puedes repetir eso por favor",
+"Gracias por tu ayuda",
+"No entiendo",
+"Puedes escribirlo",
+"Hablo español un poco",
+"Dónde puedo comprar boletos",
+"Cuál es la contraseña del wifi",
+"A qué hora cierran",
+"Dónde puedo encontrar un taxi",
+"Este plato lleva carne",
+"Soy vegetariano ",
+"Necesito ir al hospital"
+]
 
 # Initialize the recognizer
 r = sr.Recognizer()
