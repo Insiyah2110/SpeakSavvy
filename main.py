@@ -6,6 +6,7 @@ import random
 r = sr.Recognizer()
 
 done = False
+sentence_to_repeat = ""
 
 # Function to convert text to speech
 def speak_text(command, language="en-us"):
@@ -46,9 +47,10 @@ def prompt_and_repeat(sentence):
             # If there's a problem with the speech recognition service
             print("Could not request results; check your internet connection.")
         test = (str(spoken_text).lower().lstrip()).rstrip()
+        test2 = sentence_to_repeat.lower()
         print(";" + test + ";")
-        print(";" + sentence_to_repeat + ";")
-        if (test == sentence_to_repeat.lower()):
+        print(";" + test2 + ";")
+        if (test == test2):
             done = True
 
 
@@ -62,9 +64,11 @@ while(count < 10):
 
     while (not(done)):
         prompt_and_repeat(sentence_to_repeat)
+        print(done)
         #if(not(done)):
         #    print("Please Try Again")
     count += 1
+    done = False
 
 
 
