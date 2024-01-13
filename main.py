@@ -1,52 +1,46 @@
-# Python program to translate
-# speech to text and text to speech
-
-
 import speech_recognition as sr
-import pyttsx3 
+import subprocess
 
-# Initialize the recognizer 
-r = sr.Recognizer() 
+# Initialize the recognizer
+r = sr.Recognizer()
 
-# Function to convert text to
-# speech
-def SpeakText(command):
-	
-	# Initialize the engine
-	engine = pyttsx3.init()
-	engine.say(command) 
-	engine.runAndWait()
-	
-	
-# Loop infinitely for user to
-# speak
+# Function to convert text to speech
+def speak_text(command, language="en-us"):
+    # Select the voice depending on the language
+    voice = "Samantha" if language == "en-us" else "Thomas"
+    # Using the built-in macOS "say" command for text-to-speech
+    subprocess.run(["say", "-v", voice, command])
 
-while(1): 
-	
-	# Exception handling to handle
-	# exceptions at the runtime
-	try:
-		
-		# use the microphone as source for input.
-		with sr.Microphone() as source2:
-			
-			# wait for a second to let the recognizer
-			# adjust the energy threshold based on
-			# the surrounding noise level 
-			r.adjust_for_ambient_noise(source2, duration=0.2)
-			
-			#listens for the user's input 
-			audio2 = r.listen(source2)
-			
-			# Using google to recognize audio
-			MyText = r.recognize_google(audio2)
-			MyText = MyText.lower()
+def prompt_and_repeat(sentence):
+    # Instruction in English with the voice Samantha
+    instruction = "Please repeat the following sentence:"
+    print(instruction)
+    speak_text(instruction)
 
-			print("Did you say ",MyText)
-			SpeakText(MyText)
-			
-	except sr.RequestError as e:
-		print("Could not request results; {0}".format(e))
-		
-	except sr.UnknownValueError:
-		print("unknown error occurred")
+    # The French sentence with the voice Thomas
+    print(sentence)
+    speak_text(sentence, "Thomas")
+
+    # Use the microphone as source for input
+    with sr.Microphone() as source:
+        # Adjust for ambient noise and record the audio
+        r.adjust_for_ambient_noise(source)
+        audio = r.listen(source)
+
+        # Try to recognize the speech in French
+        try:
+            spoken_text = r.recognize_google(audio, language="fr-FR")
+            print("You said: " + spoken_text)
+        except sr.UnknownValueError:
+            # If speech is unintelligible
+            print("I couldn't understand what you said. Please try again.")
+            # Repeat the instruction in English
+            speak_text("I couldn't understand what you said. Please try again.")
+        except sr.RequestError:
+            # If there's a problem with the speech recognition service
+            print("Could not request results; check your internet connection.")
+
+# The French sentence you want the user to repeat
+sentence_to_repeat = "La pratique rend parfait."
+
+prompt_and_repeat(sentence_to_repeat)
