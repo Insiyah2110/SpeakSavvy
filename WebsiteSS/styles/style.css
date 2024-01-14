@@ -1,0 +1,394 @@
+/* ----------- Homepage styling ----------- */
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background:  #630937;
+    color: #FFFFFF    ;        
+}
+
+.container{
+    padding : 10px 10%;
+}
+
+
+#header{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/background_image.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 15px;
+}
+
+nav ul li a{
+    color: #FFFFFF ;
+    text-decoration: none;
+    font-size: 30px;
+    position: relative;
+}
+
+nav ul li a::after{
+    content:'';
+    width: 0%;
+    height: 4px;
+    background: #8f0e50;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.6s;
+
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+    
+}
+
+
+.header-text{
+    margin-top: 15%;
+    font-size: 45px
+}
+
+.head-text h1 {
+    font-size: 60px;
+    margin-top: 20px;
+}
+
+
+
+/* ----------- Side navbar styling -----------*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #630937;
+    overflow-x: hidden;
+    transition: 0.6s;
+    padding-top: 70px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    background-color: #630937;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ced4bc;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+    font-size: 27px;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .sidenav ul {
+    padding-top: 400px;
+  }
+
+  .sidenav ul li a{
+    padding-top: 40px;
+    color: #e6808f;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+
+
+
+  /* ----------- Social media icon styling -----------*/
+  .fa {
+    padding: 5.5px;
+    font-size: 33.5px;
+    text-align: center;
+    text-decoration: none;
+    margin: 15px 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  
+  .fa:hover {
+      opacity: 0.8;
+      background: transparent;
+      color: #fff;
+  }
+
+  .fa-linkedin {
+    background: #ced4bc;
+    color: #0b1228;
+  }
+
+  .fa-github {
+    background: #ced4bc;
+    color: #0b1228;
+  }
+
+  .fa-envelope {
+    background: #ced4bc;
+    color: #0b1228;
+  }
+  
+  /* ----------- About Me styling ----------- */
+
+  #about{
+
+    padding : 80px 0; 
+    color: #ced4bc;
+    
+    
+  }
+
+  .row{
+    display : flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+.ab-col-1{
+  flex-basis: 35%;
+}
+
+.ab-col-1 img{
+  width: 100%;
+  border-radius: 15px;
+}
+
+.ab-col-2{
+  flex-basis: 60%;  /* 5% space between columns */
+}
+
+.ab-col-2 p{
+  line-height: 2;
+}
+
+.sub-ts{
+  font-size: 42px;
+  font-weight: 600;
+}
+
+.tab-ts{
+  display:flex;
+  margin:20px 0 40px;
+}
+
+.tab-ls{
+  margin-right: 50px;
+  font-size: 16px;
+  font-weight:500;
+  cursor:pointer;
+  position:relative;
+}
+
+.tab-ls::after{
+  content:'';
+  width:0;
+  height: 3px;
+  background: #8f0e50 ;
+  position: absolute;
+  left:0;
+  bottom: -8px;
+  transition: 0.5s;
+}
+
+.tab-ls.active-l::after{
+  width: 100%;
+
+}
+
+.tab-con ul li {
+  list-style: none;
+  margin: 10px 0;
+}
+
+.tab-con ul li span{
+  color: #e6808f;
+  font-size: 20px;
+}
+
+.tab-con{
+  display:none;
+}
+
+.tab-con.active-t{
+  display: block;
+}
+
+
+/* Project section------------*/
+
+.projects-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 40px;
+  margin-top: 50px;
+  color: #0e334c;
+}
+
+.projects-list div{
+  line-height: 1.5;
+  background: #f4d0dd;
+  padding: 40px;
+  font-size: 13px;
+  font-weight: 300;
+  border-right: 10px;
+  transition: background 0.5s, transform 0.5s;
+}
+
+.projects-list a {
+  color:#5a0732;
+}
+
+.projects-list i {
+  font-size: 20px;
+}
+.projects-list div:hover{
+  background: #f1caab;
+  transform: translateY(-10px);
+}
+
+#project{
+  font-size: 20px;
+}
+
+/* Contact section -------- */
+.contact-left{
+  flex-basis:35%;
+}
+
+.contact-left p{
+  margin-top:30px;
+}
+
+.contact-left p i{
+  color:#e6808f;
+  background: transparent;
+  margin-right:15px;
+  font-size: 25px;
+}
+
+.contact-left p i:hover {
+  color: #e6808f;
+}
+
+.contact-right{
+  flex-basis:60%;
+}
+
+.social-icons i{
+  color:#e6808f;
+  background: transparent;
+  margin-right:15px;
+  font-size: 25px;
+}
+
+.btn{
+  display: inline-block;
+  margin: 50px auto;
+  width: fit-content;
+  padding: 14px 50px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #0e334c;
+  transition: background 0.5s;
+  background: #eb82a0;
+}
+
+.btn:hover{
+  background:  #f1caab;
+}
+
+.contact-right form{
+  width:100%
+}
+
+form input, form textarea{
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: #f1caab;
+  padding: 15px;
+  margin: 15px 0;
+  color: #000000;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+/* CSS for smaller screens */
+@media only screen and (max-width: 600px){
+  #header{
+    background-image: url(../images/background_image-phone.jpg) ;
+  }
+  .head-text{
+    margin-top: 100%;
+    font-size: 16px;
+  }
+  .header-text h1{
+    font-size: 35px;
+  }
+
+  .sub-ts{
+    font-size: 30px;
+  }
+  
+  .ab-col-1, .ab-col-2{
+    flex-basis:100%;
+  }
+
+  .ab-col-1{
+    margin-bottom: 30px;
+  }
+
+  .ab-col-2{
+    font-size:14px ;
+  }
+
+  .tab-ls{
+    font-size: 16px;
+    margin-right: 20px;
+  }
+
+  .contact-left p i{
+    color:transparent;
+    background: transparent;
+    font-size: 10px;
+  }
+
+  .social-icons i{
+    color:#e6808f;
+    background: transparent;
+    font-size: 40px;
+  }
+}
