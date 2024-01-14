@@ -97,7 +97,7 @@ def prompt_and_repeat(sentence, bloob):
             #threshold = 0.95  # For example, 80% similarity
 
         if similarity > 0.95:
-            print("Great Job! Next Question")
+            print("Great Job!")
             done = True
         elif similarity > 0.8:
             print("You're Getting There! Keep Practicing.")

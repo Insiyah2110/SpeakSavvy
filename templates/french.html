@@ -1,56 +1,98 @@
-<!-- templates/french.html -->
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Practice French</title>
-    <script src="{{ url_for('static', filename='js/french.js') }}"></script>
-</head>
-<body>
-    <h1>Practice French</h1>
-    <p id="sentence">{{ sentence }}</p>
-    <button onclick="startRecognition();">Start Speaking</button>
-
-    <script src="{{ url_for('static', filename='js/french.js') }}"></script>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
   <html>
     <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale0" />
-      <title>Voice recorder</title>
+        <title> Start Speaking Savvy </title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name = "viewport" content = "width=device-width", initial-scale="1.0">
+        <title>Voice recorder</title>
+
+        
     </head>
     <body>
-      <button id="startRecording">Start</button>
-      <button id="stopRecording">Stop</button>
-      <button id="check">Check Pronunciation</button>
-      <br />
-      <p id="isRecording">Click start button to record</p>
-      <audio src="" id="audioElement" controls></audio>
+        <div id="header">
+            <h1>Practice French</h1>
+            <div class="container">
+                <p id="prompt">Repeat this sentence:</p>
+                <p id="sentence">{{ sentence }}</p>
+        <button onclick="playPronunciation('{{ sentence }}')">Hear Pronunciation</button>
+        <button id="startRecording">Start Recording</button>
+        <button id="stopRecording">Stop Recording</button>
+        <button id="playRecording">Play Recording</button>
+        <p id="isRecording"></p>
+        <div id="feedback"></div>
+
+        <script src="{{ url_for('static', filename='js/french.js') }}"></script>  
+        
+    <style>
+        /* Add your CSS here */
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: #FFFFFF;
+            color: #000; /* Changed from #FFF for readability */
+            text-align: center; /* Center text */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            }
+        
+        .container {
+            padding: 10px 10%;
+            }
+        
+        #header {
+            background: url('../images/background_image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        button {
+            display: inline-block;
+            border-radius: 10px;
+            background-color: #f4511e;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+        
+        button:hover {
+            background-color: #ff5722; /* Slightly darker shade for hover effect */
+            transform: scale(1.05); /* Slightly increase button size on hover */
+        }
+        
+        #prompt, #sentence {
+            margin: 20px 0;
+            font
+            -size: 20px;
+    }
+
+        /* Feedback and recording indicators */
+        #isRecording, #feedback {
+            font-size: 18px;
+            color: #555; /* A softer color for messages */
+            margin: 10px 0;
+        }
+
+        /* This is to ensure the buttons don't stretch too wide on larger screens */
+        @media (min-width: 768px) {
+            button {
+                max-width: 300px;
+            }
+        }
+</style>
     </body>
   </html>
-  <script defer src="{{ url_for('static', filename='js/french.js') }}"></script>
-  <style>
-    * {
-      margin: 0p;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: center;
-    }
-    button {
-      padding: 7px 20px;
-      cursor: pointer;
-    }
-  </style>
 </html>
 
 

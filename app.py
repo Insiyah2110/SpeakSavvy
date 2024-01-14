@@ -1,27 +1,11 @@
 from flask import Flask, render_template, request, jsonify
+import os
+from werkzeug.utils import secure_filename
 import french
 import difflib
+import tempfile
 
 app = Flask(__name__)
-
-@app.route('/check_pronunciation', methods=['POST'])
-def check_pronunciation():
-    data = request.get_json()
-    spoken_text = data.get('spokenText', '')
-    
-    # Call a modified version of prompt_and_repeat or its logic here
-    feedback = french.process_spoken_text(spoken_text)  # Example function
-
-    return jsonify({'feedback': feedback})
-# # Determine the feedback message based on the similarity score
-# def determine_feedback(similarity):
-#     if similarity > 0.95:
-#         print("Great Job! Next Question")
-#     elif similarity > 0.8:
-#         print("You're Getting There! Keep Practicing.")
-#     else:
-#         print("Don't Lose Hope. You'll Get There!")
-
 
 @app.route('/')
 def index():
@@ -32,9 +16,31 @@ def start_learn():
     return render_template('startlearn.html')
 
 
-@app.route('/french')
-def french():
-    return render_template('french.html')
+@app.route('/french-practice')
+def french_practice():
+    sentence = french.get_random_sentence()
+    return render_template('french.html', sentence=sentence)
+
+@app.route('/assess-speech', methods=['POST'])
+def assess_speech():
+    app.logger.info("Assessing speech...")
+    try:
+        audio_file = request.files['audio_data']
+        sentence = request.form['sentence']
+        
+        # Use tempfile to handle the audio file securely
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.wav') as tmp_file:
+            audio_file.save(tmp_file.name)
+            score, feedback = french.assess_speech(sentence, tmp_file.name)
+
+        return jsonify({'score': score, 'feedback': feedback})
+    except Exception as e:
+        app.logger.error(f"Error in assess_speech: {e}")
+        # Log the exception for debugging
+        print(f"Error in assess_speech: {e}")
+        # Return a generic error message to the user
+        return jsonify({'score': 0, 'feedback': 'Error processing your speech. Please try again.'}), 500
+
 
 @app.route('/spanish')
 def spanish():
