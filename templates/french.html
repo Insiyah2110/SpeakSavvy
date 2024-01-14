@@ -23,7 +23,6 @@
         <p id="isRecording"></p>
         <div id="feedback"></div>
 
-        <script src="{{ url_for('static', filename='js/french.js') }}"></script>  
         
     <style>
         /* Add your CSS here */
@@ -43,7 +42,7 @@
             }
         
         #header {
-            background: url('../images/background_image.jpg') no-repeat center center fixed;
+            background: url("{{ url_for('static', filename='images/background_image.jpg') }}") no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -90,7 +89,9 @@
                 max-width: 300px;
             }
         }
-</style>
+    </style>
+
+    <script src="{{ url_for('static', filename='js/french.js') }}"></script> 
     </body>
   </html>
 </html>
