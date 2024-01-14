@@ -73,6 +73,49 @@ nav ul li a:hover::after{
 }
 
 
+/* Button Styling */
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 30px;
+  width: 400px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
 
 /* ----------- Side navbar styling -----------*/
 .sidenav {
@@ -133,8 +176,8 @@ nav ul li a:hover::after{
 
   #about{
 
-    padding : 80px 0; 
-    color: #FFFFFF ;
+    padding : 100px 0; 
+    color: #FFFFFF;
     
     
   }
@@ -155,7 +198,7 @@ nav ul li a:hover::after{
 }
 
 .ab-col-2{
-  flex-basis: 60%;  /* 5% space between columns */
+  flex-basis: 40%;  /* 5% space between columns */
 }
 
 .ab-col-2 p{
@@ -165,53 +208,6 @@ nav ul li a:hover::after{
 .sub-ts{
   font-size: 42px;
   font-weight: 600;
-}
-
-.tab-ts{
-  display:flex;
-  margin:20px 0 40px;
-}
-
-.tab-ls{
-  margin-right: 50px;
-  font-size: 16px;
-  font-weight:500;
-  cursor:pointer;
-  position:relative;
-}
-
-.tab-ls::after{
-  content:'';
-  width:0;
-  height: 3px;
-  background: #8f0e50 ;
-  position: absolute;
-  left:0;
-  bottom: -8px;
-  transition: 0.5s;
-}
-
-.tab-ls.active-l::after{
-  width: 100%;
-
-}
-
-.tab-con ul li {
-  list-style: none;
-  margin: 10px 0;
-}
-
-.tab-con ul li span{
-  color: #e6808f;
-  font-size: 20px;
-}
-
-.tab-con{
-  display:none;
-}
-
-.tab-con.active-t{
-  display: block;
 }
 
 
