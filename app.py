@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-import os
-from werkzeug.utils import secure_filename
-import french
-import difflib
-import tempfile
+from french import get_random_sentence_fr
+from russian import get_random_sentence_ru
+from spanish import get_random_sentence_es
 
 app = Flask(__name__)
 
@@ -18,37 +16,33 @@ def start_learn():
 
 @app.route('/french-practice')
 def french_practice():
-    sentence = french.get_random_sentence()
-    return render_template('french.html', sentence=sentence)
+    sentence_dict = get_random_sentence_fr()
+    return render_template('french.html', sentence=sentence_dict)
 
-@app.route('/assess-speech', methods=['POST'])
-def assess_speech():
-    app.logger.info("Assessing speech...")
-    try:
-        audio_file = request.files['audio_data']
-        sentence = request.form['sentence']
-        
-        # Use tempfile to handle the audio file securely
-        with tempfile.NamedTemporaryFile(delete=False, suffix='.wav') as tmp_file:
-            audio_file.save(tmp_file.name)
-            score, feedback = french.assess_speech(sentence, tmp_file.name)
+@app.route('/fr/next-question', methods=['GET'])
+def fr_next_question():
+    sentence_dict = get_random_sentence_fr()  # This should return a dict with 'original' and 'translation'
+    return jsonify(sentence_dict)
 
-        return jsonify({'score': score, 'feedback': feedback})
-    except Exception as e:
-        app.logger.error(f"Error in assess_speech: {e}")
-        # Log the exception for debugging
-        print(f"Error in assess_speech: {e}")
-        # Return a generic error message to the user
-        return jsonify({'score': 0, 'feedback': 'Error processing your speech. Please try again.'}), 500
+@app.route('/spanish-practice')
+def spanish_practice():
+    sentence_dict = get_random_sentence_es()
+    return render_template('spanish.html', sentence=sentence_dict)
 
+@app.route('/es/next-question', methods=['GET'])
+def es_next_question():
+    sentence_dict = get_random_sentence_es()  # This should return a dict with 'original' and 'translation'
+    return jsonify(sentence_dict)
 
-@app.route('/spanish')
-def spanish():
-    return render_template('spanish.html')
+@app.route('/russian-practice')
+def russian_practice():
+    sentence_dict = get_random_sentence_ru()
+    return render_template('russian.html', sentence=sentence_dict)
 
-@app.route('/russian')
-def russian():
-    return render_template('russian.html')
+@app.route('/ru/next-question', methods=['GET'])
+def ru_next_question():
+    sentence_dict = get_random_sentence_ru()  # This should return a dict with 'original' and 'translation'
+    return jsonify(sentence_dict)
 
 @app.route('/about')
 def about():
