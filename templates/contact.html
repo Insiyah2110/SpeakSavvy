@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang = "en-CA">
+    <head>
+       <title> Speak Savvy </title>
+        <meta charset = "UTF-8"> 
+        <meta http-equiv="X-UA Compatible" content = "IE=Edge">
+        <meta name = "viewport" content = "width=device-width", initial-scale="1.0">
+
+        <!-- -- add the library for the icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- -- link stylesheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <script src="https://kit.fontawesome.com/4f090e8314.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    <div id = "header">
+        <div class = "container">
+            <nav>
+                <span style="font-size:30px;cursor:pointer" ><img src="{{ url_for('static', filename='images/pic.png') }}" alt="SS_image" class="header-logo"></span>
+                <ul>
+                    <!-- main navigation bar -->
+                    <li> <a href="{{ url_for('index') }}">Home</a> </li>
+                    <li> <a href="{{ url_for('about') }}">About</a> </li>
+                    <li> <a href="{{ url_for('start_learn') }}">Start Learning</a> </li>
+                    <li> <a href="{{ url_for('contact') }}">Contact</a> </li>
+                </ul>
+            </nav>
+            <div id="contact">
+                <div class="container">
+                    <div class="row">
+                        <div class="contact-left">
+                            <br><br><br><br><br><br><br><br><br><br>
+                            <h1 class = "sub-ts">Contact Us</h1>
+                            <br><br>
+                        </div>
+                        <div class="contact-right">
+                            <form name="submit-to-google-sheet">
+                                <label for="user-name">Your Name</label>
+                                <input type="text" id="user-name" name="Name" placeholder="Your Name" required>
+                                
+                                <label for="user-email">Email Address</label>
+                                <input type="email" id="user-email" name="Email" placeholder="Your Email" required>
+           
+                                <label for="user-message">Your Comment</label>
+                                <textarea id="user-message" name="Message" rows="6" placeholder="Your Comment" required></textarea>
+                                <button type="submit" class="btn">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwUHhIHw-oqYPMOPyblB0PJQ_Ya7ekTtRnSrq07mdiwO-EvIEyOsCjL1CE5TVq6DzJ_/exec'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+    <!-- -- link js file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
