@@ -5,20 +5,21 @@
         <meta charset = "UTF-8"> 
         <meta http-equiv="X-UA Compatible" content = "IE=Edge">
         <meta name = "viewport" content = "width=device-width", initial-scale="1.0">
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
         <!-- -- add the library for the icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- -- link stylesheet -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        
     </head>
     <body>
-    <span style="font-size:30px;cursor:pointer;padding: 1%;" onclick="openNav()">&#9776; </span>
+    
     <div id = "header">
         <div class = "container">
             <nav>
-                <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img src="{{ url_for('static', filename='images/SS_image.png') }}" alt="SS_image"> </span>
+                <span style="font-size:30px;cursor:pointer" ><img src="{{ url_for('static', filename='images/pic.png') }}" alt="SS_image" class="header-logo"></span>
                 <ul>
                     <!-- main navigation bar -->
                     <li> <a href="{{ url_for('index') }}">Home</a> </li>
@@ -39,32 +40,8 @@
         </div>
     </div>
 
-    
-    <!-- ----- side navigation bar -->
-    <div id="sideNav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href = "index.html">Home</a>
-        <a href = "about.html">About</a>
-        <a href = "startlearn.html">Start Learning</a>
-        <a href="contact.html">Contact</a>
 
-    </div>
-
-
-    <!-- -- link js file -->
-    <script src = "scripts/script.js"></script>
-
-    <!-- <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwUHhIHw-oqYPMOPyblB0PJQ_Ya7ekTtRnSrq07mdiwO-EvIEyOsCjL1CE5TVq6DzJ_/exec'
-        const form = document.forms['submit-to-google-sheet']
-      
-        form.addEventListener('submit', e => {
-          e.preventDefault()
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message))
-        })
-      </script> -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     </body>
     </html>
