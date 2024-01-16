@@ -1,9 +1,11 @@
 # SpeakSavvy
 
 SpeakSavvy is a language learning platform designed to help users practice and improve their language speaking skills. The application uses speech recognition to prompt users with sentences in the target language, and users are required to repeat the sentences accurately. The system evaluates the user's pronunciation and provides feedback, allowing them to refine their language skills.
-How we built it
+
+# How we built it
 SpeakSavvy is built using a combination of technologies. The frontend is developed using HTML, CSS, and JavaScript for the user interface and interaction. Flask, a Python web framework, is used on the backend to handle server-side logic and communication with the Python scripts responsible for speech recognition and language prompts. The speech recognition functionality is implemented using the SpeechRecognition library in Python.
-Challenges we ran into
+
+# Challenges we ran into
 1. Integration of Speech Recognition: Incorporating speech recognition into the
 application posed challenges due to the need for precise recognition and accurate
 evaluation of user speech.
@@ -12,7 +14,8 @@ challenge, as it required efficient communication between the frontend and backe
 while maintaining a seamless user experience.
 3. Language Prompt Selection: Dynamically selecting and presenting diverse language
 prompts for users without making the process repetitive posed a creative challenge.
-Accomplishments that we're proud of
+
+# Accomplishments that we're proud of
 1. Speech Recognition Integration: Successfully integrating speech recognition
 functionality into the application, allowing users to practice speaking in different
 languages.
