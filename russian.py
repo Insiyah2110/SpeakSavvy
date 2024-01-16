@@ -5,65 +5,84 @@ import difflib
 
 #CHANGE THESE
 Common_Sentences = [
-    "Привет",
-    "Как дела",
-    "Как тебя зовут",
-    "Приятно познакомиться",
-    "Откуда ты",
-    "Ты говоришь по-английски",
-    "Да я немного говорю по-английски",
-    "Я плохо говорю по-русски",
-    "Можешь говорить помедленнее",
-    "Где туалет",
-    "Сколько это стоит",
-    "Помогите мне пожалуйста",
-    "Я потерялся",
-    "Можете посоветовать хороший ресторан",
-    "Извините где находится станция метро",
-    "Какая сегодня погода",
-    "Завтра я пойду в музей"
-    "У вас есть местные специальности",
-    "Я бы хотел забронировать столик на двоих",
-    "Мне очень нравится русская кухня",
-    "Можно меню пожалуйста",
-    "Как вы сказали",
-    "Я учу русский язык",
-    "Можете это повторить",
-    "Спасибо за помощь",
-    "Я не понимаю",
-    "Можете написать это",
-    "Я говорю по-русски не очень хорошо",
-    "Где я могу купить билеты",
-    "Какой пароль от Wi-Fi",
-    "Во сколько закрываетесь",
-    "Где я могу найти такси",
-    "Содержит ли это блюдо мясо",
-    "Я вегетарианец",
-    "Мне нужен врач",
-]
+    {"original": "Привет", "translation": "Hello."},
+    {"original": "Как дела", "translation": "How are you?"},
+    {"original": "Как тебя зовут", "translation": "What is your name?"},
+    {"original": "Приятно познакомиться", "translation": "Nice to meet you."},
+    {"original": "Откуда ты", "translation": "Where are you from?"},
+    {"original": "Ты говоришь по-английски", "translation": "Do you speak English?"},
+    {"original": "Да я немного говорю по-английски", "translation": "Yes, I speak a little English."},
+    {"original": "Я плохо говорю по-русски", "translation": "I don't speak Russian very well."},
+    {"original": "Можешь говорить помедленнее", "translation": "Can you speak more slowly, please?"},
+    {"original": "Где туалет", "translation": "Where is the bathroom?"},
+    {"original": "Сколько это стоит", "translation": "How much does this cost?"},
+    {"original": "Помогите мне пожалуйста", "translation": "Please help me."},
+    {"original": "Я потерялся", "translation": "I am lost."},
+    {"original": "Можете посоветовать хороший ресторан", "translation": "Can you recommend a good restaurant?"},
+    {"original": "Извините где находится станция метро", "translation": "Excuse me, where is the metro station?"},
+    {"original": "Какая сегодня погода", "translation": "What's the weather like today?"},
+    {"original": "Завтра я пойду в музей", "translation": "Tomorrow I will go to the museum."},
+    {"original": "У вас есть местные специальности", "translation": "Do you have any local specialties?"},
+    {"original": "Я бы хотел забронировать столик на двоих", "translation": "I would like to reserve a table for two."},
+    {"original": "Мне очень нравитсярусская кухня", "translation": "I really like Russian cuisine."},
+    {"original": "Можно меню пожалуйста", "translation": "May I have the menu, please?"},
+    {"original": "Как вы сказали", "translation": "What did you say?"},
+    {"original": "Я учу русский язык", "translation": "I am learning Russian."},
+    {"original": "Можете это повторить", "translation": "Could you repeat that, please?"},
+    {"original": "Спасибо за помощь", "translation": "Thank you for your help."},
+    {"original": "Я не понимаю", "translation": "I don't understand."},
+    {"original": "Можете написать это", "translation": "Can you write it down?"},
+    {"original": "Я говорю по-русски не очень хорошо", "translation": "I do not speak Russian very well."},
+    {"original": "Где я могу купить билеты", "translation": "Where can I buy tickets?"},
+    {"original": "Какой пароль от Wi-Fi", "translation": "What is the Wi-Fi password?"},
+    {"original": "Во сколько закрываетесь", "translation": "What time do you close?"},
+    {"original": "Где я могу найти такси", "translation": "Where can I find a taxi?"},
+    {"original": "Содержит ли это блюдо мясо", "translation": "Does this dish contain meat?"},
+    {"original": "Я вегетарианец", "translation": "I am a vegetarian."},
+    {"original": "Мне нужен врач", "translation": "I need a doctor."}
+    ]
 
 # Initialize the recognizer
 r = sr.Recognizer()
 
 done = False
 
+def get_random_sentence_ru():
+    sentence_pair = random.choice(Common_Sentences)
+    return sentence_pair
+
+def get_random_sentence():
+    sentence_pair = random.choice(Common_Sentences)
+    return sentence_pair['original'].lower(), sentence_pair['translation']
+
+def wav_to_text(wav_file_path):
+    recognizer = sr.Recognizer()
+    with sr.AudioFile(wav_file_path) as source:
+        audio_data = recognizer.record(source)
+        return recognizer.recognize_google(audio_data, language='ru-RU')
+    
 # Function to convert text to speech
 def speak_text(command, language="en-us"):
     # Select the voice depending on the language
-    voice = "Samantha" if language == "en-us" else "Yuri"  #CHANGE THOMAS
+    voice = "Samantha" if language == "en-us" else "Yuri"  #CHANGE Yuri
     # Using the built-in macOS "say" command for text-to-speech
     subprocess.run(["say", "-v", voice, command])
 
-def prompt_and_repeat(sentence):
+
+def prompt_and_repeat(original, translation):
     done = False
     # Instruction in English with the voice Samantha
     instruction = "Please repeat the following sentence:"
     print(instruction)
     speak_text(instruction)
 
-    # The French sentence with the voice Thomas
-    print(sentence)
-    speak_text(sentence, "Yuri")  #CHANGE THOMAS
+    # The Russian sentence with the voice Yuri
+    print(original)
+    speak_text(original, "Yuri")  #CHANGE Yuri
+    
+    # The English translation
+    print(f"The English translation is: {translation}")
+
 
     # Use the microphone as source for input
     with sr.Microphone() as source:
@@ -79,7 +98,7 @@ def prompt_and_repeat(sentence):
             print("You said: " + spoken_text)
 
             # Calculate the similarity as a number between 0 and 1
-            similarity = difflib.SequenceMatcher(None, sentence, spoken_text).ratio()
+            similarity = difflib.SequenceMatcher(None, original, spoken_text).ratio()
             print(f"Similarity: {similarity:.2f}")
 
             # Define a threshold for considering the repetition to be correct
@@ -107,20 +126,15 @@ def prompt_and_repeat(sentence):
     return done
 
 
-# The French sentence you want the user to repeat
-count = 0
-size = len(Common_Sentences)
-while(count < 3):
-    choice = random.randint(0, size-1)
-    sentence_to_repeat = Common_Sentences[choice].lower()
-    ans = False
-    while (not(ans)):
-        ans = prompt_and_repeat(sentence_to_repeat)
-    count += 1
-
-
-
-#prompt_and_repeat(sentence_to_repeat)
-
-#please try again until you get it 
-#also loop for different scentences
+# Only run this part if russian.py is executed as a script, not when it's imported
+if __name__ == "__main__":
+    # The Russian sentence you want the user to repeat
+    count = 0
+    size = len(Common_Sentences)
+    while(count < 3):
+        original, translation = get_random_sentence()
+        ans = False
+        while (not(ans)):
+            ans = prompt_and_repeat(original, translation)
+        count += 1
+    pass
