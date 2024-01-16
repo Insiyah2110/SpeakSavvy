@@ -1,56 +1,145 @@
-from flask import Flask, render_template, request, jsonify
-from french import get_random_sentence_fr
-from russian import get_random_sentence_ru
-from spanish import get_random_sentence_es
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Start Speaking Savvy</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- -- link stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-app = Flask(__name__)
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #ff7e5f 0%,#feb47b 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .header-logo {
+            height: 100px;
+            width: auto;
+            margin-bottom: 2rem;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0 2rem;
+        }
+        
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        #prompt, #sentence, #translation {
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        #feedback-container {
+            margin-top: 20px;
+        }
+        
+        #feedback {
+            font-size: 1.5em;
+            color: #333; /* Dark color for better readability */
+            margin-bottom: 0.5em; /* Space between feedback and score */
+        }
+        
+        #score {
+            font-size: 1em;
+            color: #555; /* Slightly lighter color for contrast */
+        }
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+        #original {
+            font-size: 2em; /* Increase font size */
+            margin-bottom: 0.2em; /* Reduce space below the sentence */
+        }
+        
+        #translation {
+            display: block; /* Make sure it's a block element so it can have margins */
+            font-size: 1.5em; /* Slightly smaller font size for the translation */
+            margin-top: 0.2em; /* Space above the translation */
+        }
+        
+        /* Style for 'Translation:' label */
+        .translation-label {
+            display: inline-block; /* Inline block for alignment */
+            margin-right: 0.5em; /* Space between the label and the translation */
+            font-size: 0.9em;
+            font-weight: bold; /* Optional: makes it bold */
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 0 1rem;
+                padding: 1rem;
+            }
+        
+            .header-logo {
+                height: 80px;
+            }
+        
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+</style>
 
-@app.route('/start-learn')
-def start_learn():
-    return render_template('startlearn.html')
 
 
-@app.route('/french-practice')
-def french_practice():
-    sentence_dict = get_random_sentence_fr()
-    return render_template('french.html', sentence=sentence_dict)
+</head>
+<body>
+    <div id="header">
+        <span style="font-size:30px;cursor:pointer" ><img src="{{ url_for('static', filename='images/pic.png') }}" alt="SS_image" class="header-logo"></span>
 
-@app.route('/fr/next-question', methods=['GET'])
-def fr_next_question():
-    sentence_dict = get_random_sentence_fr()  # This should return a dict with 'original' and 'translation'
-    return jsonify(sentence_dict)
+        <h1>Practice Spanish</h1>
+        <div class="container">
+            <p id="prompt">Repeat this sentence:</p>
+            <p id="original">{{ sentence.original }}</p>
+            <span class="translation-label">Translation:</span><span id="translation">{{ sentence.translation }}</span>
+            <button id="playPronunciation">Play Pronunciation</button>
+            <button id="startRecording">Start Recording</button>
+            <button id="playRecording">Play Recording</button>
+            <p id="isRecording"></p>
+            
+            <div id="feedback-container">
+                <p id="feedback"></p>
+                <p id="score"></p>
+            </div>
+            <button id="nextQuestion" onclick="loadNextQuestion()" disabled>New Sentence</button>
 
-@app.route('/spanish-practice')
-def spanish_practice():
-    sentence_dict = get_random_sentence_es()
-    return render_template('spanish.html', sentence=sentence_dict)
+        </div>
+    </div>
 
-@app.route('/es/next-question', methods=['GET'])
-def es_next_question():
-    sentence_dict = get_random_sentence_es()  # This should return a dict with 'original' and 'translation'
-    return jsonify(sentence_dict)
-
-@app.route('/russian-practice')
-def russian_practice():
-    sentence_dict = get_random_sentence_ru()
-    return render_template('russian.html', sentence=sentence_dict)
-
-@app.route('/ru/next-question', methods=['GET'])
-def ru_next_question():
-    sentence_dict = get_random_sentence_ru()  # This should return a dict with 'original' and 'translation'
-    return jsonify(sentence_dict)
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    
+    <script src="{{ url_for('static', filename='js/spanish.js') }}"></script>
+</body>
+</html>
