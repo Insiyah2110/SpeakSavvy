@@ -23,7 +23,8 @@ languages.
 to receive immediate guidance on their language skills.
 3. Diverse Language Prompts: Implementing a system that dynamically selects and
 presents a variety of language prompts, enhancing the learning experience.
-What we learned
+
+# What we learned
 1. Speech Recognition Techniques: We gained insights into the complexities and
 techniques involved in implementing speech recognition for language learning
 applications.
@@ -31,7 +32,8 @@ applications.
 valuable experience in building web applications with Python.
 3. User Experience Challenges: Addressing the challenges of providing an engaging and
 effective user experience in language learning applications.
-What's next for SpeakSavvy
+
+# What's next for SpeakSavvy
 1. Expanded Language Support: Adding support for additional languages to cater to a
 broader audience.
 2. Advanced Pronunciation Evaluation: Implementing more advanced algorithms to
