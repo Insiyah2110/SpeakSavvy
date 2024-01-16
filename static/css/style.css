@@ -6,22 +6,30 @@
     box-sizing: border-box;
 }
 
-body{
-    background:  #630937;
-    color: #FFFFFF    ;        
+.header-logo {
+  height: 100px;
+  width: auto;
+}
+  
+
+body {
+  background: #ff7e5f; /* Adjust the color to match your theme */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#header{
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
 }
 
 .container{
     padding : 10px 10%;
-}
-
-
-#header{
-    width: 100%;
-    height: 100vh;
-    background-image: url(../images/background_image.jpg);
-    background-size: cover;
-    background-position: center;
 }
 
 nav {
@@ -115,53 +123,6 @@ nav ul li a:hover::after{
   right: 0;
 }
 
-
-
-/* ----------- Side navbar styling -----------*/
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #630937;
-    overflow-x: hidden;
-    transition: 0.6s;
-    padding-top: 70px;
-  }
-  
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    background-color: #630937;
-    text-decoration: none;
-    font-size: 25px;
-    color: #ced4bc;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-    font-size: 27px;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-
-  .sidenav ul {
-    padding-top: 400px;
-  }
-
-  .sidenav ul li a{
-    padding-top: 40px;
-    color: #e6808f;
-  }
   
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
@@ -169,15 +130,12 @@ nav ul li a:hover::after{
   }
 
 
-
-
-
-  /* ----------- About Me styling ----------- */
+  /* ----------- About Page styling ----------- */
 
   #about{
 
     padding : 100px 0; 
-    color: #FFFFFF;
+    color: Black;
     
     
   }
@@ -210,42 +168,6 @@ nav ul li a:hover::after{
   font-weight: 600;
 }
 
-
-/* Project section------------*/
-
-.projects-list{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 40px;
-  margin-top: 50px;
-  color: #0e334c;
-}
-
-.projects-list div{
-  line-height: 1.5;
-  background: #f4d0dd;
-  padding: 40px;
-  font-size: 13px;
-  font-weight: 300;
-  border-right: 10px;
-  transition: background 0.5s, transform 0.5s;
-}
-
-.projects-list a {
-  color:#5a0732;
-}
-
-.projects-list i {
-  font-size: 20px;
-}
-.projects-list div:hover{
-  background: #f1caab;
-  transform: translateY(-10px);
-}
-
-#project{
-  font-size: 20px;
-}
 
 /* Contact section -------- */
 .contact-left{
