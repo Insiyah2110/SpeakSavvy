@@ -202,6 +202,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function playPronunciation() {
     const sentence = document.getElementById("original").textContent;
     let utterance = new SpeechSynthesisUtterance(sentence);
+    utterance.rate = 0.3; 
     utterance.lang = 'ru-RU';
     speechSynthesis.speak(utterance);
     }
