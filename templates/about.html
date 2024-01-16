@@ -5,20 +5,20 @@
         <meta charset = "UTF-8"> 
         <meta http-equiv="X-UA Compatible" content = "IE=Edge">
         <meta name = "viewport" content = "width=device-width", initial-scale="1.0">
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
         <!-- -- add the library for the icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- -- link stylesheet -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
     </head>
     <body>
-    <span style="font-size:30px;cursor:pointer;padding: 1%;" onclick="openNav()">&#9776; </span>
     <div id = "header">
         <div class = "container">
             <nav>
-                <span style="font-size:30px;cursor:pointer" onclick="openNav()"><img src="{{ url_for('static', filename='images/SS_image.png') }}" alt="SS_image"> </span>
+                <span style="font-size:30px;cursor:pointer" ><img src="{{ url_for('static', filename='images/pic.png') }}" alt="SS_image" class="header-logo"></span>
                 <ul>
                     <!-- main navigation bar -->
                     <li> <a href="{{ url_for('index') }}">Home</a> </li>
@@ -35,9 +35,7 @@
                         </div>
                         <div class="ab-col-2">
                             <h1 class = "sub-ts">About Speak Savvy</h1> <br>
-                            <p>Hellooooooooooooooooooooooooooooooooooooooooo write stuff owuhdowehfowehfowi ehfowiejfoiwehjfowiejf w
-                                wouefhoweihfoiwejfowehjfoiwejfoweijfowiejfowiejfoooooooooooo woeijfowiejfoiwe f ewjoifjoweijf oweijf woeifj
-                                woiejfoiwej 
+                            <p>Speak Savvy is a language learning tool for English speakers that is made to make learning a new language simple. With a series of basic phrases and words, Speak Savvy helps users learn in a more intuitive and easy way. Some of the languages we offer are French, Spanish, and Russian.
                             </p>
                         </div>
                     </div>
@@ -45,19 +43,9 @@
             </div>
         </div>
     </div>
-
-    <!-- ----- side navigation bar -->
-    <div id="sideNav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="{{ url_for('index') }}">Home</a> 
-        <a href="{{ url_for('about') }}">About</a> 
-        <a href="{{ url_for('start_learn') }}">Start Learning</a> 
-        <a href="{{ url_for('contact') }}">Contact</a> 
-
-    </div>
-
-        <!-- -- link js file -->
-    <script src = "scripts/script.js"></script>
+    
+    <!-- -- link js file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     </body>
     </html>
